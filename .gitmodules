@@ -1,0 +1,15 @@
+[submodule "submodules/blurSkin"]
+	path = submodules/blurSkin
+	url = D:/Users/Tyler/src/BlurWeightStuff/individualRepos/blurSkin
+[submodule "submodules/brSkinBrush"]
+	path = submodules/brSkinBrush
+	url = D:/Users/Tyler/src/BlurWeightStuff/individualRepos/brSkinBrush
+[submodule "submodules/mPaintEditor"]
+	path = submodules/mPaintEditor
+	url = D:/Users/Tyler/src/BlurWeightStuff/individualRepos/mPaintEditor
+[submodule "submodules/mWeightEditor"]
+	path = submodules/mWeightEditor
+	url = D:/Users/Tyler/src/BlurWeightStuff/individualRepos/mWeightEditor
+[submodule "submodules/wireframeDisplay"]
+	path = submodules/wireframeDisplay
+	url = D:/Users/Tyler/src/BlurWeightStuff/individualRepos/wireframeDisplay
