@@ -4,6 +4,10 @@ SET MAYA_VERSION=2020
 SET BUILD=mayabuild_%MAYA_VERSION%
 SET COMPILER=Visual Studio 15 2017 Win64
 
+REM Make sure to update the remote repos before building
+REM You can just comment this out if you want
+git submodule update --remote --recursive
+
 SET PFX=%~dp0
 cd %PFX%
 rmdir %BUILD% /s /q
