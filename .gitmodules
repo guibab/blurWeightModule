@@ -1,0 +1,20 @@
+[submodule "submodules/brSkinBrush"]
+	path = submodules/brSkinBrush
+	url = https://github.com/guibab/brSkinBrush.git
+	branch = master
+[submodule "submodules/mWeightEditor"]
+	path = submodules/mWeightEditor
+	url = https://github.com/guibab/mWeightEditor.git
+	branch = master
+[submodule "submodules/mPaintEditor"]
+	path = submodules/mPaintEditor
+	url = https://github.com/guibab/mPaintEditor.git
+	branch = master
+[submodule "submodules/wireframeDisplay"]
+	path = submodules/wireframeDisplay
+	url = https://github.com/guibab/wireframeDisplay.git
+	branch = master
+[submodule "submodules/blurSkin"]
+	path = submodules/blurSkin
+	url = https://github.com/guibab/blurSkin.git
+	branch = master
