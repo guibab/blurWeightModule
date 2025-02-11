@@ -370,6 +370,9 @@ class SkinBrushContext : public MPxContext {
     void setInfluenceByName(MString value);
     void setPostSetting(bool value);
 
+    void setSkinClusterByName(MString& value);
+    void setMeshByName(MString& value);
+
     void setMinColor(double value);
     void setMaxColor(double value);
 
@@ -428,6 +431,9 @@ class SkinBrushContext : public MPxContext {
     double interactiveValue2 = 1.0;  // for whateverUse in the code
 
     skinBrushTool *cmd;
+    bool getSkinFromName = false;
+    bool getMeshFromName = false;
+    MString passedSkinName, passedMeshName;
 
     bool firstPaintDone;
     bool performBrush;

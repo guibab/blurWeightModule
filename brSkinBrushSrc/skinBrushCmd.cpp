@@ -234,6 +234,18 @@ MStatus SkinBrushContextCmd::doEditFlags() {
         status = argData.getFlagArgument(kInfluenceNameFlag, 0, value);
         smoothContext->setInfluenceByName(value);  // not reselect in UI
     }
+    if (argData.isFlagSet(kSkinClusterNameFlag)) {
+        MString value;
+        status = argData.getFlagArgument(kSkinClusterNameFlag, 0, value);
+        MGlobal::displayInfo(MString("kSkinClusterNameFlag passed ") + value);
+        smoothContext->setSkinClusterByName(value);  // not reselect in UI
+    }
+    if (argData.isFlagSet(kMeshNameFlag)) {
+        MString value;
+        status = argData.getFlagArgument(kMeshNameFlag, 0, value);
+        MGlobal::displayInfo(MString("kMeshNameFlag passed ") + value);
+        smoothContext->setMeshByName(value);  // not reselect in UI
+    }
     if (argData.isFlagSet(kPostSettingFlag)) {
         bool value;
         status = argData.getFlagArgument(kPostSettingFlag, 0, value);

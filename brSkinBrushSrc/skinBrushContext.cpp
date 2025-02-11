@@ -1535,11 +1535,11 @@ ModifierCommands SkinBrushContext::getCommandIndexModifiers() {
     // unlockVertices
     ModifierCommands theCommandIndex = this->commandIndex;
 
-    if (this->modifierNoneShiftControl == ModifierKeys::Control){
+    if (this->modifierNoneShiftControl == ModifierKeys::Shift){
         if (this->commandIndex == ModifierCommands::Add){
             theCommandIndex = ModifierCommands::Remove;
         }
-    } else if (this->modifierNoneShiftControl == ModifierKeys::Shift){
+    } else if (this->modifierNoneShiftControl == ModifierKeys::Control){
         if (this->commandIndex == ModifierCommands::LockVertices){
             theCommandIndex = ModifierCommands::UnlockVertices;
         } else {
@@ -1939,7 +1939,13 @@ MStatus SkinBrushContext::getMesh() {
     // mesh
     // -----------------------------------------------------------------
     MDagPath dagPath;
-    status = getSelection(meshDag);
+    if (getMeshFromName) {
+        getDagPath(passedMeshName, this->meshDag);
+        MGlobal::displayInfo(MString("direct passed mesh: ") + this->meshDag.partialPathName());
+    }
+    else {
+        status = getSelection(meshDag);
+    }
     CHECK_MSTATUS_AND_RETURN_IT(status);
     if (meshDag.apiType() == MFn::kNurbsSurface) {  // if is nurbs
         isNurbs = true;
@@ -2026,15 +2032,25 @@ MStatus SkinBrushContext::getMesh() {
     // skin cluster
     // -----------------------------------------------------------------
     // Get the skin cluster node from the history of the mesh.
-    MObject skinClusterObj;
-    if (isNurbs) {
-        status = getSkinCluster(nurbsDag, skinClusterObj);
-    } else {
-        status = getSkinCluster(meshDag, skinClusterObj);
+    if (getSkinFromName) {
+        getMObject(passedSkinName, this->skinObj);
+        MString skinName = getSkinClusterName();
+        MGlobal::displayInfo(MString("direct passed skin: ") + skinName);
     }
-    CHECK_MSTATUS_AND_RETURN_IT(status);
-    // Store the skin cluster for undo.
-    skinObj = skinClusterObj;
+    else {
+        MObject skinClusterObj;
+        if (isNurbs) {
+            status = getSkinCluster(nurbsDag, skinClusterObj);
+        }
+        else {
+            status = getSkinCluster(meshDag, skinClusterObj);
+        }
+        CHECK_MSTATUS_AND_RETURN_IT(status);
+        // Store the skin cluster for undo.
+        skinObj = skinClusterObj;
+        MString skinName = getSkinClusterName();
+        MGlobal::displayInfo(MString("skinned found from shape : ") + skinName);
+    }
 
     // Create a component object representing all vertices of the mesh.
     allVtxCompObj = allVertexComponents();
@@ -2044,7 +2060,7 @@ MStatus SkinBrushContext::getMesh() {
 
     // Get the skin cluster settings.
     unsigned int normalizeValue;
-    getSkinClusterAttributes(skinClusterObj, maxInfluences, maintainMaxInfluences, normalizeValue);
+    getSkinClusterAttributes(skinObj, maxInfluences, maintainMaxInfluences, normalizeValue);
     normalize = false;
     if (normalizeValue > 0) normalize = true;
 

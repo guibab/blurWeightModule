@@ -345,6 +345,16 @@ void SkinBrushContext::setInfluenceByName(MString value) {
         setInfluenceIndex(indexInfluence, false);
     }
 }
+void SkinBrushContext::setSkinClusterByName(MString& value) {
+    if (verbose) MGlobal::displayInfo("setSkinClusterByName CALLED \"" + value + "\"\n");
+    getSkinFromName = true;
+    passedSkinName = value;
+}
+void SkinBrushContext::setMeshByName(MString& value) {
+    if (verbose) MGlobal::displayInfo("setMeshByName CALLED \"" + value + "\"\n");
+    getMeshFromName = true;
+    passedMeshName = value;
+}
 
 // ---------------------------------------------------------------------
 // getting values from the command flags
