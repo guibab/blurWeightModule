@@ -2803,7 +2803,7 @@ bool SkinBrushContext::expandHit(int faceHit, MFloatPoint hitPoint,
 
 void SkinBrushContext::addBrushShapeFallof(std::unordered_map<int, float> &dicVertsDist) {
     double valueStrength = strengthVal;
-    if (this->modifierNoneShiftControl == ModifierKeys::ControlShift || this->commandIndex == ModifierCommands::Smooth) {
+    if (this->modifierNoneShiftControl == ModifierKeys::Control || this->commandIndex == ModifierCommands::Smooth) {
         valueStrength = smoothStrengthVal;  // smooth always we use the smooth value different of
                                             // the regular value
     }

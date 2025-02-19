@@ -56,14 +56,14 @@ void SkinBrushContext::setFlood() {
     // 0 Add - 1 Remove - 2 AddPercent - 3 Absolute - 4 Smooth - 5 Sharpen - 6 LockVertices - 7
     // UnLockVertices
     ModifierCommands theCommandIndex = this->commandIndex;
-    if (this->modifierNoneShiftControl == ModifierKeys::Shift)
+    if (this->modifierNoneShiftControl == ModifierKeys::Control)
         theCommandIndex = ModifierCommands::Smooth;  // smooth always
     if (this->modifierNoneShiftControl == ModifierKeys::ControlShift)
         theCommandIndex = ModifierCommands::Sharpen;  // sharpen always
 
     if (
         theCommandIndex == ModifierCommands::Smooth
-        || this->modifierNoneShiftControl == ModifierKeys::Shift
+        || this->modifierNoneShiftControl == ModifierKeys::Control
         || this->modifierNoneShiftControl == ModifierKeys::ControlShift
     )
         value = smoothStrengthVal;
